@@ -1,0 +1,2 @@
+#docker build -f ./all_models/bloom/Dockerfile -t ai-studio-registry-vpc.cn-beijing.cr.aliyuncs.com/kube-ai/triton_with_ft:22.03-transformers .
+docker build -f ./all_models/bloom/Dockerfile -t ai-studio-registry-vpc.cn-beijing.cr.aliyuncs.com/kube-ai/triton_with_ft:22.03-main-2edb257e-transformers .

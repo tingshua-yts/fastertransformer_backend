@@ -236,7 +236,7 @@ instance_group [
 parameters {
   key: "tensor_para_size"
   value: {
-    string_value: "1"
+    string_value: "2"
   }
 }
 parameters {
@@ -260,7 +260,7 @@ parameters {
 parameters {
   key: "model_checkpoint_path"
   value: {
-    string_value: "/data/models/BLOOM/bloom-560m/c-model/1-gpu/"
+    string_value: "/mnt/model/bloom-560m-ft/2-gpu/"
   }
 }
 parameters {
