@@ -1,0 +1,1 @@
+docker build --rm  --build-arg TRITON_VERSION=22.03 -t triton_with_ft:test-mpi  -f docker/Dockerfile .

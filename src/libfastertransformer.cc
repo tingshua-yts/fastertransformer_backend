@@ -343,6 +343,9 @@ ModelState::ModelState(TRITONBACKEND_Model* triton_model)
 {
   node_id = ft::mpi::getCommWorldRank();
   int num_nodes = ft::mpi::getCommWorldSize();
+    LOG_MESSAGE(
+      TRITONSERVER_LOG_INFO,
+      (std::string("mpi world size: ") + std::to_string(nums_nodes)).c_str());
 
   triton::common::TritonJson::WriteBuffer buffer;
   ModelConfig().PrettyWrite(&buffer);
@@ -693,6 +696,7 @@ class ModelInstanceState : public BackendModelInstance {
   // The full path to the FT model file.
   std::string model_path_;
 
+  // 用于存储创建的ft实例进行ft的forward计算
   std::vector<std::unique_ptr<AbstractTransformerModelInstance>>
       ft_model_instance_;
 
@@ -782,6 +786,7 @@ ModelInstanceState::ModelInstanceState(
   gpu_size_ = model_state->GetGpuSize();
   world_size_ = model_state->GetWorldSize();
 
+  // 在非multi node的场景，为pt_pp_size，否则为gpu size
   model_instance_gpu_size_ = num_nodes > 1 ? gpu_size_ : tp_pp_size_;
   ft_model_instance_.resize(model_instance_gpu_size_);
   std::vector<std::thread> threads;
